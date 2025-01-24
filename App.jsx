@@ -7,19 +7,23 @@ export default function App() {
 
     /**
      * Challenge:
-     * 1) Turn startGame into an async function.
-     * 2) Use the try...catch syntax and make a fetch request to the emoji API, using this url:
-     *    "https://emojihub.yurace.pro/api/all/category/animals-and-nature".
-     *  Store the response in a const "response".
+     * 1) Create a new state variable, "emojisData", with a corresponding setter function, 
+     *    and initialize it as an empty array.
      * 
-     * 3) Check if the response is ok.
-     *      a) If yes, store the fetched data in a const "data". Log the data to the console. 
-     *               Call setIsGameOn(true).
-     *      b) If no, throw an error with a custom error message, and inside the catch block, log 
-     *           the error message to the console.
-     * 💡 Hint: Remember the await keyword!
-     * ⚠️ Warning: The emojis rendered will still be those from the hardcoded array.
+     * 2) Inside the try block of the startGame function, create a new variable, 
+     *    "dataSample", and set it equal to the first 5 elements from "data".
+     * 
+     * 3) Store the "dataSample" as "emojisData" in state.
+     * 
+     * 4) Log "emojisData" to the console.
+     * 
+     * 💡 Hint: In step 2, use the JavaScript .slice() method to get the data sample.
+     * ⚠️ Warning: We're still rendering our hardcoded emojis.
      */
+
+    const [emojisData, setEmojisData] = useState([])
+    console.log(emojisData)
+
 
     async function startGame(e) {
         try {
@@ -31,7 +35,9 @@ export default function App() {
             }
 
             const data = await response.json();
-            console.log(data)
+            let dataSample = data.slice(0, 5)
+            setEmojisData(dataSample)
+            //console.log(data)
             setIsGameOn(true)
 
         } catch (error) {
@@ -39,6 +45,7 @@ export default function App() {
         }
 
     }
+
 
     function turnCard() {
         console.log("Memory card clicked")
