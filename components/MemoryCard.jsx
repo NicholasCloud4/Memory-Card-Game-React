@@ -2,15 +2,7 @@ import { decodeEntity } from 'html-entities';
 
 export default function MemoryCard({ handleClick, data }) {
 
-    /**
-     * Challenge:
-     * 2) Use the "data" that you're receiving as a prop to render the emojis fetch from the API. 
-     * Remember that "data" is an array of emoji objects. Log the data to the console to see what 
-     * property on this object you should render as the button content.
-     * 
-     * 💡 Hint: You know how to decode HTML entities!
-     */
-    console.log(data)
+    //console.log(data)
 
     const emojiArray = ['🐶', '🐷', '🐙', '🐛', '🐵', '🐶', '🐷', '🐙', '🐛', '🐵']
 
