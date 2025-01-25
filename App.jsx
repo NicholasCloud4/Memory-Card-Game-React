@@ -27,8 +27,9 @@ export default function App() {
 
             const data = await response.json();
             let dataSlice = getDataSlice(data)
-            setEmojisData(dataSlice)
-            //console.log(getRandomIndicies(data))
+            let emojisArray = getEmojisArray(dataSlice)
+
+            setEmojisData(emojisArray)
             setIsGameOn(true)
 
         } catch (error) {
@@ -37,26 +38,6 @@ export default function App() {
 
     }
 
-    /**
-     * Challenge:
-     * 1) Below the "startGame" function, create a new function called "getDataSlice".
-     *    The function should reveice "data" as a parameter.
-     * 
-     * 2) Inside this function, make a call to "getRandomIndicies" and store the return value in 
-     *    a variable called "randomIndices".
-     * 
-     * 3) Map over "randomIndices" and use the random numbers stored in this array to create 
-     *    a new array of random emojis selected from "data". Store this new array in a variable called 
-     *   "dataSlice" and return it at the bottom of the function.
-     * 
-     * 4) Inside the try block of the "startGame" function, make a call to "getDataSlice", 
-     *    passing "data" as an argument. Save the return value in a variable called "dataSlice".
-     * 
-     * 5) Delete the "dataSample" variable and replace "dataSample" with the new "dataSlice"
-     *    variable in the "setEmojisData" function.
-     * 
-     * 6) Run the code and start a new game to check that your code is working.
-    */
 
     function getDataSlice(data) {
         let randomIndices = getRandomIndicies(data)
@@ -82,6 +63,33 @@ export default function App() {
         }
 
         return randomIndicesArray
+    }
+
+    function getEmojisArray(data) {
+        /**
+         * Challenge:
+         * 1) Create a new variable, "pairedEmojisArray". This variable should be an array 
+         *    that includes each emoji object from the "data" array twice.
+         * 
+         * 2) Use the Fisher-Yates algorithm to shuffle "pairedEmojisArray" and return it at 
+         *    the bottom of the function.
+         * 
+         * 3) Run the code and start a new game.
+         * 
+         * 💡 Hints: In step 1, use the array spread operator to create a new array.
+         *           In step 2, google the Fisher-Yates algorithm!
+        */
+
+        let pairedEmojisArray = [...data, ...data]
+
+        for (let i = pairedEmojisArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1))
+            const temp = pairedEmojisArray[i]
+            pairedEmojisArray[i] = pairedEmojisArray[j]
+            pairedEmojisArray[j] = temp
+        }
+
+        return pairedEmojisArray
     }
 
 
