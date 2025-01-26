@@ -14,6 +14,7 @@ import MemoryCard from '/components/MemoryCard'
 export default function App() {
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([])
+    console.log(emojisData)
 
 
     async function startGame(e) {
@@ -66,19 +67,6 @@ export default function App() {
     }
 
     function getEmojisArray(data) {
-        /**
-         * Challenge:
-         * 1) Create a new variable, "pairedEmojisArray". This variable should be an array 
-         *    that includes each emoji object from the "data" array twice.
-         * 
-         * 2) Use the Fisher-Yates algorithm to shuffle "pairedEmojisArray" and return it at 
-         *    the bottom of the function.
-         * 
-         * 3) Run the code and start a new game.
-         * 
-         * 💡 Hints: In step 1, use the array spread operator to create a new array.
-         *           In step 2, google the Fisher-Yates algorithm!
-        */
 
         let pairedEmojisArray = [...data, ...data]
 
@@ -92,9 +80,15 @@ export default function App() {
         return pairedEmojisArray
     }
 
+    /**
+     * Challenge:
+     * 2) In the turnCard function, receive name and index as parameters and log them to the console.
+     */
 
-    function turnCard() {
+
+    function turnCard(name, index) {
         console.log("Memory card clicked")
+        console.log("name=" + name + " index=" + index)
     }
 
     return (
