@@ -6,16 +6,6 @@ import MemoryCard from '/components/MemoryCard'
 
 export default function App() {
 
-    /**
-     * Challenge:
-     * 1) Create a new variable in state, "selectedCards", with a matching setter function. 
-     *    Initialize it as an empty array.
-     * 
-     * 2) In the turnCard function, set the value of "selectedCards" to be an array containing one item: 
-     *    an object with two key-value pairs, where the values are the function parameters.
-     * 
-     * 3) Log "selectedCards" to the console.
-     */
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([])
     const [selectedCards, setSelectedCards] = useState([])
@@ -84,12 +74,38 @@ export default function App() {
         return pairedEmojisArray
     }
 
+    /**
+     * Challenge:
+     * 1) Check if the clicked card is already in the selectedCards array. 
+     *  Store the result of this check in a variable called "selectedCardEntry".
+     * 
+     * 2) Update the code that adds a clicked card to "selectedCards". Make sure that the following conditions are met:
+     *      - Any given card can only be added once within the same round.
+     *      - The length of the "selectedCards" array should never exceed 2.
+     * 
+     * 3) Log "selectedCards" to the console.
+     * 💡 Hint: Use the JavaScript .find() method to solve step 1.
+     */
+
+    console.log(selectedCards)
+
 
     function turnCard(name, index) {
-        console.log("Memory card clicked")
-        console.log("name=" + name + " index=" + index)
-        setSelectedCards([{ name, index }])
-        console.log(selectedCards)
+        // console.log("name=" + name + " index=" + index)
+        let selectedCardEntry = selectedCards.find((emoji) => {
+            if (emoji.index === index) {
+                console.log("card already selected")
+                return true
+            }
+        })
+
+        if (!selectedCardEntry && selectedCards.length < 2) {
+            setSelectedCards((prevSelectedCards) => {
+                return [...prevSelectedCards, { name, index }]
+            })
+        } else if (selectedCardEntry && selectedCards.length === 2) {
+            setSelectedCards([{ name, index }])
+        }
     }
 
     return (
