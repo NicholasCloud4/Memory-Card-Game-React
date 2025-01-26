@@ -2,11 +2,6 @@ import { decodeEntity } from 'html-entities';
 
 export default function MemoryCard({ handleClick, data }) {
 
-    /**
-     * Challenge:
-     * 1) Pass emoji.name and index as arguments to the handleClick fuction that is called when clicking the button.
-     */
-
     const emojiArray = ['🐶', '🐷', '🐙', '🐛', '🐵', '🐶', '🐷', '🐙', '🐛', '🐵']
 
     const emojiEl = data.map((emoji, index) =>

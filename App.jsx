@@ -3,18 +3,22 @@ import Form from '/components/Form'
 import MemoryCard from '/components/MemoryCard'
 
 
-/**
- * To do:
- * Step 1: Get random emojis from API
- * Step 2: Duplicate unique emojis
- * Step 3: Shuffle emojis data
- */
-
 
 export default function App() {
+
+    /**
+     * Challenge:
+     * 1) Create a new variable in state, "selectedCards", with a matching setter function. 
+     *    Initialize it as an empty array.
+     * 
+     * 2) In the turnCard function, set the value of "selectedCards" to be an array containing one item: 
+     *    an object with two key-value pairs, where the values are the function parameters.
+     * 
+     * 3) Log "selectedCards" to the console.
+     */
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([])
-    console.log(emojisData)
+    const [selectedCards, setSelectedCards] = useState([])
 
 
     async function startGame(e) {
@@ -80,15 +84,12 @@ export default function App() {
         return pairedEmojisArray
     }
 
-    /**
-     * Challenge:
-     * 2) In the turnCard function, receive name and index as parameters and log them to the console.
-     */
-
 
     function turnCard(name, index) {
         console.log("Memory card clicked")
         console.log("name=" + name + " index=" + index)
+        setSelectedCards([{ name, index }])
+        console.log(selectedCards)
     }
 
     return (
