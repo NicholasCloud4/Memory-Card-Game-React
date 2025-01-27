@@ -10,26 +10,10 @@ export default function App() {
     const [emojisData, setEmojisData] = useState([])
     const [selectedCards, setSelectedCards] = useState([])
     const [matchedCards, setMatchedCards] = useState([])
-
-
-    /**
-     * Mini challenge:
-     * Which tool from our React toolbox can we use to check for 
-     * matches every time there are two selected cards? --> useEffect hook
-     */
-
-    /**
-     * Challenge:
-     * 1) Create a new state variable, "matchedCards", with a corresponding setter function. 
-     *    Initialize it as an empty array.
-     * 
-     * 2) If "selectedCards" contain two matching cards, use the useEffect hook to add these card objects 
-     *    to "matchedCards". Make sure to not override the previous state of "matchedCards".
-     * 
-     * 💡 Hint: Use the array spread operator to solve step 2.
-     */
+    const [isGameOver, setIsGameOver] = useState(false)
 
     console.log(matchedCards)
+    console.log(isGameOver)
 
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
@@ -40,6 +24,26 @@ export default function App() {
         }
 
     }, [selectedCards])
+
+    /**
+     * Challenge:
+     * 1) Create a new state variable, "isGameOver", with a corresponding setter function. 
+     *    Initialize the variable as false.
+     * 
+     * 2) Create a new useEffect that sets "isGameOver" to true when all memory cards have been matched 
+     *    and the game is over. Make sure to consider the following:
+     *      - What value should we use in the dependencies array?
+     *      - What condition can we use to determine whether the game is over?
+     */
+
+    useEffect(() => {
+        if (matchedCards.length === emojisData.length && emojisData.length > 0) {
+            setIsGameOver(true)
+        }
+
+    }, [matchedCards])
+
+
 
     async function startGame(e) {
         try {
@@ -104,21 +108,6 @@ export default function App() {
         return pairedEmojisArray
     }
 
-    /**
-     * Challenge:
-     * 1) Check if the clicked card is already in the selectedCards array. 
-     *  Store the result of this check in a variable called "selectedCardEntry".
-     * 
-     * 2) Update the code that adds a clicked card to "selectedCards". Make sure that the following conditions are met:
-     *      - Any given card can only be added once within the same round.
-     *      - The length of the "selectedCards" array should never exceed 2.
-     * 
-     * 3) Log "selectedCards" to the console.
-     * 💡 Hint: Use the JavaScript .find() method to solve step 1.
-     */
-
-    console.log(selectedCards)
-
 
     function turnCard(name, index) {
         // console.log("name=" + name + " index=" + index)
@@ -133,7 +122,7 @@ export default function App() {
             setSelectedCards((prevSelectedCards) => {
                 return [...prevSelectedCards, { name, index }]
             })
-        } else if (selectedCardEntry && selectedCards.length === 2) {
+        } else if (!selectedCardEntry && selectedCards.length === 2) {
             setSelectedCards([{ name, index }])
         }
     }
