@@ -118,11 +118,6 @@ export default function App() {
         }
     }
 
-    /**
-     * Challenge:
-     * 1) Pass "selectedCards" and "matchedCards" as props to "MemoryCard".
-     */
-
     return (
         <main>
             <h1>Memory</h1>
