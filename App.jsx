@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Form from '/components/Form'
 import MemoryCard from '/components/MemoryCard'
 
@@ -9,7 +9,37 @@ export default function App() {
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([])
     const [selectedCards, setSelectedCards] = useState([])
+    const [matchedCards, setMatchedCards] = useState([])
 
+
+    /**
+     * Mini challenge:
+     * Which tool from our React toolbox can we use to check for 
+     * matches every time there are two selected cards? --> useEffect hook
+     */
+
+    /**
+     * Challenge:
+     * 1) Create a new state variable, "matchedCards", with a corresponding setter function. 
+     *    Initialize it as an empty array.
+     * 
+     * 2) If "selectedCards" contain two matching cards, use the useEffect hook to add these card objects 
+     *    to "matchedCards". Make sure to not override the previous state of "matchedCards".
+     * 
+     * 💡 Hint: Use the array spread operator to solve step 2.
+     */
+
+    console.log(matchedCards)
+
+    useEffect(() => {
+        if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
+            setMatchedCards((prevMatchedCards) => {
+                return [...prevMatchedCards, ...selectedCards]
+            })
+
+        }
+
+    }, [selectedCards])
 
     async function startGame(e) {
         try {
