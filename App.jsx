@@ -13,7 +13,7 @@ export default function App() {
     const [matchedCards, setMatchedCards] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
 
-    console.log(selectedCards)
+    //console.log(matchedCards)
 
 
     useEffect(() => {
@@ -118,11 +118,16 @@ export default function App() {
         }
     }
 
+    /**
+     * Challenge:
+     * 1) Pass "selectedCards" and "matchedCards" as props to "MemoryCard".
+     */
+
     return (
         <main>
             <h1>Memory</h1>
             {!isGameOn && <Form handleSubmit={startGame} />}
-            {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} />}
+            {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
         </main>
     )
 }
