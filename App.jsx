@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Form from '/components/Form'
 import MemoryCard from '/components/MemoryCard'
+import EmojiButton from './components/EmojiButton'
 
 
 
@@ -12,8 +13,8 @@ export default function App() {
     const [matchedCards, setMatchedCards] = useState([])
     const [isGameOver, setIsGameOver] = useState(false)
 
-    console.log(matchedCards)
-    console.log(isGameOver)
+    console.log(selectedCards)
+
 
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
@@ -25,16 +26,6 @@ export default function App() {
 
     }, [selectedCards])
 
-    /**
-     * Challenge:
-     * 1) Create a new state variable, "isGameOver", with a corresponding setter function. 
-     *    Initialize the variable as false.
-     * 
-     * 2) Create a new useEffect that sets "isGameOver" to true when all memory cards have been matched 
-     *    and the game is over. Make sure to consider the following:
-     *      - What value should we use in the dependencies array?
-     *      - What condition can we use to determine whether the game is over?
-     */
 
     useEffect(() => {
         if (matchedCards.length === emojisData.length && emojisData.length > 0) {
