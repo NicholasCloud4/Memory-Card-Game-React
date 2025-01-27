@@ -1,19 +1,34 @@
 
-export default function EmojiButton({ content, style, handleClick, selectedCardEntry, matchedCardEntry }) {
-    /**
-         * Challenge:
-         * 2) Create a new variable, "btnContent", and use "selectedCardEntry" 
-         *    and "matchedCardEntry" that you receive as props to conditionally assign a value to it. 
-         * 
-         *    If a card is either matched or selected, "btnContent" should be the value of the "content" 
-         *    prop; otherwise, it should be a question mark.
-         * 
-         * 3) Render "btnContent" as the content of the button.
-         * 💡 Hint: Use a ternary operator to solve step 2.
-         */
+export default function EmojiButton({ content, handleClick, selectedCardEntry, matchedCardEntry }) {
+
     let btnContent = selectedCardEntry || matchedCardEntry ? content : "?"
+
+    /**
+     * Challenge:
+     * 3) Create a new variable, "btnStyle", and conditionally assign it one of the following values:
+     *      a) Selected card: "btn--emoji__back--selected".
+     *      b) Matched card: "btn--emoji__back--matched".
+     *      c) Neither: "btn--emoji__front".
+     * 4) Add "btnStyle" to the existing classes set on the button.
+     * 
+     * 💡 Hint for step 1 & 3:
+     * Think carefully about the order in which you check if a card is selected, matched or neither.
+     * 
+     * When you're done, there should be hover/focus effects (box-shadow and background-color) on cards lying face-down, animation when cards are turned, and greyed out background on matched cards.
+     */
+    let btnStyle
+
+    if (matchedCardEntry) {
+        btnStyle = "btn--emoji__back--matched"
+    }
+    else if (selectedCardEntry) {
+        btnStyle = "btn--emoji__back--selected"
+    } else {
+        btnStyle = "btn--emoji__front"
+    }
+
     return (
-        <button className={style} onClick={handleClick}>{btnContent}</button>
+        <button className={`btn btn--emoji ${btnStyle}`} onClick={handleClick}>{btnContent}</button>
     )
 
 }
