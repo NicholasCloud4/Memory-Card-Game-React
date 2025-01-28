@@ -18,10 +18,16 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
             " "
         }
 
+        /**
+     * Challenge:
+     * 1) Pass the "index" as a prop to EmojiButton.
+     */
+
         return (
             <li key={index} className={`card-item ${cardStyle}`}>
                 <EmojiButton
-                    content={decodeEntity(emoji.htmlCode[0])}
+                    emoji={emoji}
+                    index={index}
                     handleClick={() => handleClick(emoji.name, index)}
                     selectedCardEntry={selectedCardEntry}
                     matchedCardEntry={matchedCardEntry}

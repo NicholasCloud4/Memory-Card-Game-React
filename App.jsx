@@ -102,12 +102,6 @@ export default function App() {
 
     function turnCard(name, index) {
         console.log("name=" + name + " index=" + index)
-        let selectedCardEntry = selectedCards.find((emoji) => {
-            if (emoji.index === index) {
-                console.log("card already selected")
-                return true
-            }
-        })
 
         if (selectedCards.length < 2) {
             setSelectedCards((prevSelectedCards) => {
