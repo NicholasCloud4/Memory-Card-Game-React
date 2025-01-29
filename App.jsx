@@ -3,6 +3,7 @@ import Form from '/components/Form'
 import MemoryCard from '/components/MemoryCard'
 import EmojiButton from './components/EmojiButton'
 import AssistiveTechInfo from './components/AssistiveTechInfo'
+import GameOver from './components/GameOver'
 
 
 
@@ -13,9 +14,6 @@ export default function App() {
     const [selectedCards, setSelectedCards] = useState([])
     const [matchedCards, setMatchedCards] = useState([])
     const [areAllCardsMatched, setAreAllCardsMatched] = useState(false)
-
-    //console.log(matchedCards)
-
 
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
@@ -113,11 +111,25 @@ export default function App() {
         }
     }
 
+    /**
+     * Challenge:
+     * 1) Inside the "components" folder, create a new component, "GameOver", that returns a div containing a p element. 
+     *    Use the following content and styling:
+     *      - div styling: "wrapper wrapper--accent"
+     *      - p content: "You've matched all the memory cards!"
+     *      - p styling: "p--large"
+     * 
+     * 2) Render "GameOver" conditionally above the "MemoryCard" when "areAllCardsMatched" is true.
+     * 
+     * 3) Play a memory game to check that the conditional rendering is working.
+     */
+
     return (
         <main>
             <h1>Memory</h1>
             {!isGameOn && <Form handleSubmit={startGame} />}
             {isGameOn === true && areAllCardsMatched === false ? <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} /> : null}
+            {areAllCardsMatched === true ? <GameOver /> : null}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
         </main>
     )
