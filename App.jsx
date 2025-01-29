@@ -113,23 +113,26 @@ export default function App() {
 
     /**
      * Challenge:
-     * 1) Inside the "components" folder, create a new component, "GameOver", that returns a div containing a p element. 
-     *    Use the following content and styling:
-     *      - div styling: "wrapper wrapper--accent"
-     *      - p content: "You've matched all the memory cards!"
-     *      - p styling: "p--large"
+     * 1) Create a new function, "resetGame". As the name indicates, the function should reset the game, 
+     *    but it should not modify "emojisData" or interact with the EmojiHub API in any way.
      * 
-     * 2) Render "GameOver" conditionally above the "MemoryCard" when "areAllCardsMatched" is true.
-     * 
-     * 3) Play a memory game to check that the conditional rendering is working.
+     * 2) Pass this function to the "GameOver" component as the value of a prop called "handleClick".
      */
+
+    function resetGame() {
+        setIsGameOn(false)
+        setSelectedCards([])
+        setMatchedCards([])
+        setAreAllCardsMatched(false)
+    }
+
 
     return (
         <main>
             <h1>Memory</h1>
             {!isGameOn && <Form handleSubmit={startGame} />}
             {isGameOn === true && areAllCardsMatched === false ? <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} /> : null}
-            {areAllCardsMatched === true ? <GameOver /> : null}
+            {areAllCardsMatched === true ? <GameOver handleClick={resetGame} /> : null}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
         </main>
     )
