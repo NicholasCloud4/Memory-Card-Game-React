@@ -14,28 +14,6 @@ export default function App() {
     const [matchedCards, setMatchedCards] = useState([])
     const [areAllCardsMatched, setAreAllCardsMatched] = useState(false)
 
-    /**
-     * Challenge:
-     * 1) In the "components" folder, create a new component called "AssistiveTechInfo".
-     *   The component should take two props, "emojisData" and "matchedCards". 
-     *   It should return a section element containing one h2 and two p elements, rendering the following content:
-     *      h2: "Game status"
-     *      p: "Number of matched pairs: x."
-     *      p: "Number of cards left to match: x."
-     * 
-     * 2) Render the new component between "Form" and "MemoryCard" when "isGameOn" is true and "areAllCardsMatched" is false. 
-     *    Remember to pass down props.
-     * 
-     * 3) Play a memory game to check that everything is working, both the dynamically updating content and 
-     *    the conditional rendering of the component.
-     * 
-     * 4) Add the class "sr-only" to the section element in the AssistiveTechInfo component to hide it from the window.
-     * 
-     * For now, don't worry about setting aria attributes on the new component!
-     * 
-     * 💡 Hint: In step 1, use the props you receive to do some math inside the p elements.
-     */
-
     //console.log(matchedCards)
 
 
