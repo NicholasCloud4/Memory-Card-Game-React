@@ -18,10 +18,6 @@ export default function MemoryCard({ handleClick, data, selectedCards, matchedCa
             " "
         }
 
-        /**
-     * Challenge:
-     * 1) Pass the "index" as a prop to EmojiButton.
-     */
 
         return (
             <li key={index} className={`card-item ${cardStyle}`}>
