@@ -111,14 +111,6 @@ export default function App() {
         }
     }
 
-    /**
-     * Challenge:
-     * 1) Create a new function, "resetGame". As the name indicates, the function should reset the game, 
-     *    but it should not modify "emojisData" or interact with the EmojiHub API in any way.
-     * 
-     * 2) Pass this function to the "GameOver" component as the value of a prop called "handleClick".
-     */
-
     function resetGame() {
         setIsGameOn(false)
         setSelectedCards([])

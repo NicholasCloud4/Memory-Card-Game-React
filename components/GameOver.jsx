@@ -1,21 +1,26 @@
-import React from 'react'
+import { useEffect, useRef } from 'react'
 import RegularButton from './RegularButton'
 
 export default function GameOver({ handleClick }) {
 
     /**
      * Challenge:
-     * 3) Render an instance of the "RegularButton" component right below the p element. 
-     *   The button should receive "handleClick" as a prop and its content should be "Play again".
-     *  
-     * 4) Play a game and when you've finished, click the "Play again" button to check that everything is working.
-     *    Clicking the button should make the previous game disappear and instead make the "Form" component render again.
+     * 1) Using the useRef hook, the useEffect hook, the .focus() method and the tabIndex attribute, 
+     *    add focus to the div when this component renders.
      * 
-     * 💡 Hint: Take a good look at the "RegularButton" and the "Form" components if you're unsure of how to use the "RegularButton" component here.
+     * 2) Play a memory game to check that your code is working.
+     * 
+     * ⚠️ Warning: Use keyboard navigation to see your browser's default focus styling on the div.
      */
 
+    const divRef = useRef(null)
+
+    useEffect(() => {
+        divRef.current.focus()
+    }, [])
+
     return (
-        <div className='wrapper wrapper--accent'>
+        <div className='wrapper wrapper--accent' ref={divRef} tabIndex={-1}>
             <p className='p--large'>You've matched all the memory cards!</p>
             <RegularButton handleClick={handleClick}>Play Again!</RegularButton>
         </div>
