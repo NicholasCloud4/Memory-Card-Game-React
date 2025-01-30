@@ -42,15 +42,6 @@ export default function App() {
     }, [matchedCards])
 
 
-    /**
-     * Challenge:
-     * When the "handleFormChange" function runs, update "formData" to store the most recent selections made in the form. 
-     * "formData" should always be an object with two key-value pairs. Use "e.target.name" as the key and "e.target.value"
-     * as the value.
-     * 
-     * 💡 Hint: Remember to keep track of the previous state. The object spread operator can help you with this.
-     */
-
     function handleFormChange(e) {
         setFormData((prevFormData) => {
             return {
