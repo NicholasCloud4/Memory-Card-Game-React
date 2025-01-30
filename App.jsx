@@ -14,6 +14,26 @@ export default function App() {
     const [selectedCards, setSelectedCards] = useState([])
     const [matchedCards, setMatchedCards] = useState([])
     const [areAllCardsMatched, setAreAllCardsMatched] = useState(false)
+    const [isError, setIsError] = useState(false)
+
+    console.log(isError)
+
+    /**
+     * Challenge:
+     * 1) Create a new state variable, "isError", with a corresponding setter function. Initialize it to false.
+     * 
+     * 2) In the "startGame" function, set "isError" to true inside the catch block.
+     * 
+     * 3) At the bottom of the App component, right before the return statement, create a new function,
+     *   "resetError", that sets "isError" back to false.
+     * 
+     * 4) Inside the try block in the "startGame" fuction, throw a new Error with a custom error message.
+     *    Below the state variables, log "isError" to the console.
+     * 
+     * 5) Run your code to check that everthing is working as expected.
+     * 
+     * ⚠️ Warning: You won't be able to test the "resetError" function at this stage since we're not yet calling it.
+     */
 
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
@@ -36,8 +56,10 @@ export default function App() {
 
 
     async function startGame(e) {
+        e.preventDefault()
         try {
-            e.preventDefault()
+            throw new Error("Something went wrong")
+
             const response = await fetch("https://emojihub.yurace.pro/api/all/category/animals-and-nature")
 
             if (!response.ok) {
@@ -53,6 +75,7 @@ export default function App() {
 
         } catch (error) {
             console.log(error)
+            setIsError(true)
         }
 
     }
@@ -118,6 +141,10 @@ export default function App() {
         setAreAllCardsMatched(false)
     }
 
+
+    function resetError() {
+        setIsError(false)
+    }
 
     return (
         <main>
