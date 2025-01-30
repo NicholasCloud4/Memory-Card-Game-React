@@ -6,16 +6,6 @@ import AssistiveTechInfo from './components/AssistiveTechInfo'
 import GameOver from './components/GameOver'
 import ErrorCard from './components/ErrorCard'
 
-/**
-     * Challenge:
-     * 1) Create a new state variable, "isFirstRender", with a corresponding setter function, and initialize it to true.
-     * 
-     * 2) Identify where we should flip "isFirstRender" from true to false and use the setter function to do so.
-     * 
-     * 3) Pass "isFirstRender" as a prop to the "Form" component.
-     */
-
-
 
 export default function App() {
 
@@ -135,7 +125,7 @@ export default function App() {
 
 
     function turnCard(name, index) {
-        console.log("name=" + name + " index=" + index)
+        //console.log("name=" + name + " index=" + index)
 
         if (selectedCards.length < 2) {
             setSelectedCards((prevSelectedCards) => {
