@@ -44,21 +44,21 @@ export default function App() {
 
     /**
      * Challenge:
-     * 4) Create a new function, "handleFormChange". It should receive the event as a parameter.
-     *    Use the event to get the name and the value of the selected option, and for now, simply 
-     *    log name and value to the console.
+     * When the "handleFormChange" function runs, update "formData" to store the most recent selections made in the form. 
+     * "formData" should always be an object with two key-value pairs. Use "e.target.name" as the key and "e.target.value"
+     * as the value.
      * 
-     * 5) Pass "handleFormChange" as the prop "handleChange" to the "Form" component.
-     *    Remember to also receive the prop.
-     * 
-     * 6) Run the code and select some options in the form to test your code.
+     * 💡 Hint: Remember to keep track of the previous state. The object spread operator can help you with this.
      */
 
     function handleFormChange(e) {
-        const name = e.target.name
-        const value = e.target.value
+        setFormData((prevFormData) => {
+            return {
+                ...prevFormData,
+                [e.target.name]: e.target.value
+            }
 
-        console.log(name, value)
+        })
 
     }
 
