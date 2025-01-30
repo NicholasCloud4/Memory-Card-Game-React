@@ -23,27 +23,6 @@ export default function App() {
     const [isError, setIsError] = useState(false)
 
 
-    /**
-     * Challenge:
-     * 1) At the top of the component, before the state variables, create a new variable, "initialFormData", 
-     *    and set it equal to an object with the following key value-pairs:
-     *      - category: "animals-and-nature"
-     *      - number: 10
-     * 
-     * 2) Create a new state variable, "formData", with a corresponding setter function, 
-     *    and give it "initialFormData" as the initial value.
-     * 
-     * 3) Update the URL in the fetch request to use the category saved in "formData" 
-     *    instead of the hardcoded category.
-     * 
-     * 4) Update the for loop in the "getRandomIndices" function to use the number saved in "formData" 
-     *    instead of the hardcoded number 5.
-     * 
-     * 5) Run the code and start a game to check that your refactored code is working. You should still get 10 memory cards rendered to the mini browser.
-     * 
-     * 💡 Hint: In step 4, perform some mathematical operation on the number from formData to get the correct number of memory cards.
-     */
-
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
             setMatchedCards((prevMatchedCards) => {
@@ -63,6 +42,25 @@ export default function App() {
     }, [matchedCards])
 
 
+    /**
+     * Challenge:
+     * 4) Create a new function, "handleFormChange". It should receive the event as a parameter.
+     *    Use the event to get the name and the value of the selected option, and for now, simply 
+     *    log name and value to the console.
+     * 
+     * 5) Pass "handleFormChange" as the prop "handleChange" to the "Form" component.
+     *    Remember to also receive the prop.
+     * 
+     * 6) Run the code and select some options in the form to test your code.
+     */
+
+    function handleFormChange(e) {
+        const name = e.target.name
+        const value = e.target.value
+
+        console.log(name, value)
+
+    }
 
     async function startGame(e) {
         e.preventDefault()
@@ -158,7 +156,7 @@ export default function App() {
     return (
         <main>
             <h1>Memory</h1>
-            {!isGameOn && !isError ? <Form handleSubmit={startGame} /> : null}
+            {!isGameOn && !isError ? <Form handleSubmit={startGame} handleChange={handleFormChange} /> : null}
             {isGameOn === true && areAllCardsMatched === false ? <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} /> : null}
             {areAllCardsMatched === true ? <GameOver handleClick={resetGame} /> : null}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
