@@ -6,6 +6,16 @@ import AssistiveTechInfo from './components/AssistiveTechInfo'
 import GameOver from './components/GameOver'
 import ErrorCard from './components/ErrorCard'
 
+/**
+     * Challenge:
+     * 1) Create a new state variable, "isFirstRender", with a corresponding setter function, and initialize it to true.
+     * 
+     * 2) Identify where we should flip "isFirstRender" from true to false and use the setter function to do so.
+     * 
+     * 3) Pass "isFirstRender" as a prop to the "Form" component.
+     */
+
+
 
 export default function App() {
 
@@ -14,6 +24,7 @@ export default function App() {
         number: 10
     }
 
+    const [isFirstRender, setIsFirstRender] = useState(true)
     const [formData, setFormData] = useState(intitialFormData)
     const [isGameOn, setIsGameOn] = useState(false)
     const [emojisData, setEmojisData] = useState([])
@@ -70,10 +81,13 @@ export default function App() {
 
             setEmojisData(emojisArray)
             setIsGameOn(true)
+            setIsFirstRender(false)
 
         } catch (error) {
             console.log(error)
             setIsError(true)
+        } finally {
+            setIsFirstRender(false)
         }
 
     }
@@ -147,7 +161,7 @@ export default function App() {
     return (
         <main>
             <h1>Memory</h1>
-            {!isGameOn && !isError ? <Form handleSubmit={startGame} handleChange={handleFormChange} /> : null}
+            {!isGameOn && !isError ? <Form handleSubmit={startGame} handleChange={handleFormChange} isFirstRender={isFirstRender} /> : null}
             {isGameOn === true && areAllCardsMatched === false ? <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} /> : null}
             {areAllCardsMatched === true ? <GameOver handleClick={resetGame} /> : null}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
