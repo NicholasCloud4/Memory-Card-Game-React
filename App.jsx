@@ -4,8 +4,35 @@ import MemoryCard from '/components/MemoryCard'
 import EmojiButton from './components/EmojiButton'
 import AssistiveTechInfo from './components/AssistiveTechInfo'
 import GameOver from './components/GameOver'
+import ErrorCard from './components/ErrorCard'
 
-
+/**
+     * Mega challenge:
+     * 1) In the "components" folder, create a new component, "ErrorCard".
+     *    The component should return a div wrapping around two p elements and an instance 
+     *    of the RegularButton component, displaying the following content:
+     *      - p #1: "Sorry, there was an error."
+     *      - p #2: "Please come back later or click the button below to try restarting the game."
+     *      - RegularButton: "Restart game"
+     * 
+     * 2) Style "ErrorCard" using the following class names:
+     *      - div: "wrapper wrapper--accent"
+     *      - p #1: "p--large"
+     *      - p #2: "p--regular"
+     * 
+     * 3) Make "ErrorCard" accessible!
+     * 
+     * 4) Render "ErrorCard" conditionally here in the "App" component below "MemoryCard" when "isError" is true.
+     * 
+     * 5) Pass the "resetError" function through props to the "RegularButton" in the "ErrorCard" and use it on the
+     *    onClick event handler in the "RegularButton" component.
+     * 
+     * 6) Refactor the conditional rendering of the "Form" component so that it is not rendered when there is an error.
+     *
+     * 7) Run your code to test that everything is working.
+     * 
+     * 💡 Hint: Take a good look at the "GameOver" component if you get stuck.
+     */
 
 export default function App() {
 
@@ -15,25 +42,6 @@ export default function App() {
     const [matchedCards, setMatchedCards] = useState([])
     const [areAllCardsMatched, setAreAllCardsMatched] = useState(false)
     const [isError, setIsError] = useState(false)
-
-    console.log(isError)
-
-    /**
-     * Challenge:
-     * 1) Create a new state variable, "isError", with a corresponding setter function. Initialize it to false.
-     * 
-     * 2) In the "startGame" function, set "isError" to true inside the catch block.
-     * 
-     * 3) At the bottom of the App component, right before the return statement, create a new function,
-     *   "resetError", that sets "isError" back to false.
-     * 
-     * 4) Inside the try block in the "startGame" fuction, throw a new Error with a custom error message.
-     *    Below the state variables, log "isError" to the console.
-     * 
-     * 5) Run your code to check that everthing is working as expected.
-     * 
-     * ⚠️ Warning: You won't be able to test the "resetError" function at this stage since we're not yet calling it.
-     */
 
     useEffect(() => {
         if (selectedCards.length === 2 && selectedCards[0].name === selectedCards[1].name) {
@@ -149,10 +157,11 @@ export default function App() {
     return (
         <main>
             <h1>Memory</h1>
-            {!isGameOn && <Form handleSubmit={startGame} />}
+            {!isGameOn && !isError ? <Form handleSubmit={startGame} /> : null}
             {isGameOn === true && areAllCardsMatched === false ? <AssistiveTechInfo emojisData={emojisData} matchedCards={matchedCards} /> : null}
             {areAllCardsMatched === true ? <GameOver handleClick={resetGame} /> : null}
             {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} selectedCards={selectedCards} matchedCards={matchedCards} />}
+            {isError === true ? <ErrorCard handleClick={resetError} /> : null}
         </main>
     )
 }
